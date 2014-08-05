@@ -7,7 +7,8 @@ public class PSConnector {
 	private final String src, dest, host;
 	private final long timeStart, timeEnd;
 	
-	public PSConnector (String host, String src, String dest, long timeStart, long timeEnd){
+	public PSConnector (String host, String src, String dest,
+			long timeStart, long timeEnd){
 		this.host = host;
 		this.src = src;
 		this.dest = dest;
@@ -15,10 +16,14 @@ public class PSConnector {
 		this.timeEnd = timeEnd;
 	}
 	
-	public List<BasicPoint> getBwctlDataPoint(){
-		XMLManager bwctlManager = new XMLManager(this.src, this.dest,
+	public List<BwctlPoint> getBwctlDataPoint() {
+		BwctlManager bwctlManager = new BwctlManager(this.src, this.dest,
 				this.timeStart, this.timeEnd);
-		return bwctlManager.sendRequest(this.host).getPointData();
+		return bwctlManager.getResult(this.host);
 	}
 	
+	public List<OwampPoint> getOwampDataPoint() {
+		OwampManager owampManager = new OwampManager(this.src, this.dest, this.timeStart, this.timeEnd);
+		return owampManager.getResult(this.host);
+	}
 }

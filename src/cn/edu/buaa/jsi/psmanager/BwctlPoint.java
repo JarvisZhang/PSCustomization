@@ -1,11 +1,11 @@
 package cn.edu.buaa.jsi.psmanager;
 
-public class BasicPoint {
+public class BwctlPoint {
 	
 	private long unixtime;
 	private double value;
 	
-	public BasicPoint(long unixtime, double value){
+	public BwctlPoint(long unixtime, double value){
 		this.unixtime = unixtime;
 		this.value = value;
 	}
@@ -16,5 +16,10 @@ public class BasicPoint {
 	
 	public double getValue(){
 		return this.value;
+	}
+	
+	public void printPoint() {
+		System.out.printf("unixtime: %d, bandwidth:%f\n",
+				this.unixtime, this.value);
 	}
 }

@@ -8,18 +8,25 @@ public class unitest {
 		// TODO Auto-generated method stub
 		
 		String srcIP = "10.4.9.199", destIP = "10.4.9.202";
-		String host = "http://10.4.9.202:8085/perfSONAR_PS/services/pSB";
-		long timeStart = 1406271714, timeEnd = 1406275507;
-		
-		PSConnector conn = new PSConnector(host, srcIP, destIP, timeStart, timeEnd);
-		
-		List<BasicPoint> bwctlPoint = conn.getBwctlDataPoint();
-		
-		for(BasicPoint point : bwctlPoint) {
-			System.out.printf("timestamp: %d, bandwidth: %f\n",
-					point.getUnixtime(), point.getValue());
-		}
 
+		String bwctlHost = "http://10.4.9.202:8085/perfSONAR_PS/services/pSB";
+		long bwctlTimeStart = 1406271714, bwctlTimeEnd = 1406275507;
+		PSConnector bwctlConn = new PSConnector(
+				bwctlHost, srcIP, destIP, bwctlTimeStart, bwctlTimeEnd);
+		List<BwctlPoint> bwctlPoint = bwctlConn.getBwctlDataPoint();
+		for(BwctlPoint point : bwctlPoint) {
+			point.printPoint();
+		}
+		
+		String owampHost = "http://10.4.9.202:8085/perfSONAR_PS/services/pSB";
+		long owampTimeStart = 1406945400, owampTimeEnd = 1406946600;
+		PSConnector owampConn = new PSConnector(
+				owampHost, srcIP, destIP, owampTimeStart, owampTimeEnd);
+		List<OwampPoint> owampPoint = owampConn.getOwampDataPoint();
+		for(OwampPoint point : owampPoint) {
+			point.printPoint();
+		}
+		
 	}
 
 }
