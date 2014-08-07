@@ -103,8 +103,8 @@ public class XMLManager {
 		return metaElement;
 	}
 	
-	protected SOAPElement buildTimeElement(SOAPBodyElement msgElement, long timeStart,
-			long timeEnd) throws Exception {
+	protected SOAPElement buildTimeElement(SOAPBodyElement msgElement,
+			long timeStart, long timeEnd) throws Exception {
 		SOAPElement metaElement = msgElement.addChildElement("metadata",
 				"nmwg", "http://ggf.org/ns/nmwg/base/2.0/");
 		metaElement.setAttribute("id", "meta2c");
@@ -135,12 +135,13 @@ public class XMLManager {
 		return metaElement;
 	}
 	
-	protected SOAPElement buildDataElement(SOAPBodyElement msgElement)
-			throws Exception {
+	protected SOAPElement buildDataElement(SOAPBodyElement msgElement,
+			SOAPElement metaElement) throws Exception {
 		SOAPElement dataElement = msgElement.addChildElement("data",
 				"nmwg", "http://ggf.org/ns/nmwg/base/2.0/");
-		dataElement.setAttribute("id", "data2");
-		dataElement.setAttribute("metadataIdRef", "meta2c");
+		dataElement.setAttribute("id", "data");
+		dataElement.setAttribute("metadataIdRef",
+				metaElement.getAttribute("id"));
 		return dataElement;
 	}
 	

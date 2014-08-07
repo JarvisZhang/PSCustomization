@@ -11,8 +11,8 @@ import javax.xml.soap.SOAPPart;
 
 public class OwampManager extends XMLManager {
 	
-	public OwampManager(String srcIP, String destIP,
-			long timeStart, long timeEnd) {
+	public OwampManager(String srcIP, String destIP, long timeStart,
+			long timeEnd) {
 		try {
 			super.init();
 			SOAPPart soapPart = super.getSOAPRequestMsg().getSOAPPart();
@@ -23,19 +23,19 @@ public class OwampManager extends XMLManager {
 			SOAPBodyElement msgElement = soapBody.addBodyElement(bodyName);
 			this.buildBodyHeader(msgElement);
 			this.buildIPElement(msgElement, srcIP, destIP);
-			this.buildTimeElement(msgElement, timeStart, timeEnd);
+			SOAPElement metaTimeElement = this.buildTimeElement(msgElement, timeStart, timeEnd);
 			SOAPElement dataElement = msgElement.addChildElement("data",
 					"nmwg", "http://ggf.org/ns/nmwg/base/2.0/");
 			dataElement.setAttribute("id", "data2");
 			dataElement.setAttribute("metadataIdRef", "meta2c");
-			this.buildDataElement(msgElement);
+			this.buildDataElement(msgElement, metaTimeElement);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	public List<OwampPoint> getResult(String host){
+	public List<OwampPoint> getResult(String host) {
 		OwampData owampData = new OwampData(this.sendRequest(host));
 		return owampData.getPointData();
 	}

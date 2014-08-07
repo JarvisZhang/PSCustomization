@@ -23,8 +23,9 @@ public class BwctlManager extends XMLManager {
 			SOAPBodyElement msgElement = soapBody.addBodyElement(bodyName);
 			this.buildBodyHeader(msgElement);
 			this.buildIPElement(msgElement, srcIP, destIP);
-			this.buildTimeElement(msgElement, timeStart, timeEnd);
-			this.buildDataElement(msgElement);
+			SOAPElement metaTimeElement =
+					this.buildTimeElement(msgElement, timeStart, timeEnd);
+			this.buildDataElement(msgElement, metaTimeElement);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
