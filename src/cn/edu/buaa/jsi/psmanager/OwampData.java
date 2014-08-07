@@ -34,10 +34,10 @@ public class OwampData {
 						Double.parseDouble(datum.getAttribute("max_delay"));
 				long unixtime = XMLParser.isoTimeParse(
 						datum.getAttribute("endTime"));
-				int duplicates =
-						Integer.parseInt(datum.getAttribute("duplicates"));
-				int loss =
-						Integer.parseInt(datum.getAttribute("loss"));
+				double duplicates =
+						Double.parseDouble(datum.getAttribute("duplicates"));
+				double loss =
+						Double.parseDouble(datum.getAttribute("loss"));
 				this.owampPointList.add(new OwampPoint(unixtime, minDelay,
 						maxError, maxDelay, duplicates, loss));
 			}
