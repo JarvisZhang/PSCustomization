@@ -8,11 +8,11 @@ public class OwampPoint {
 	public OwampPoint(long unixtime, double minDelay,double maxError,
 			double maxDelay, double duplicates, double loss) {
 		this.unixtime = unixtime;
-		this.minDelay = minDelay;
-		this.maxError = maxError;
-		this.maxDelay = maxDelay;
-		this.duplicates = duplicates;
-		this.loss = loss;
+		this.minDelay = (minDelay > 0) ? minDelay : 0;
+		this.maxError = (maxError > 0) ? maxError : 0;
+		this.maxDelay = (maxDelay > 0) ? maxDelay : 0;
+		this.duplicates = (duplicates > 0) ? duplicates : 0;
+		this.loss = (loss > 0) ? loss : 0;
 	}
 
 	public long getUnixtime() {

@@ -20,6 +20,9 @@ public class XMLManager {
 	private SOAPConnectionFactory scf;
 	private SOAPMessage soapRequestMsg;
 	
+	private static final String IPV4TYPE = "ipv4";
+	private static final String IPV6TYPE = "ipv6";
+	
 	public XMLManager() {
 
 	}
@@ -78,6 +81,7 @@ public class XMLManager {
 	
 	protected SOAPElement buildIPElement(SOAPBodyElement msgElement, String srcIP,
 			String destIP) throws Exception {
+		String ipType = (srcIP.length() > 15) ? IPV6TYPE : IPV4TYPE;
 		SOAPElement metaElement = msgElement.addChildElement("metadata", "nmwg",
 				"http://ggf.org/ns/nmwg/base/2.0/");
 		metaElement.setAttribute("id", "meta2");
@@ -92,12 +96,12 @@ public class XMLManager {
 		
 		SOAPElement srcElement = endPointElement.addChildElement("src",
 				"nmwgt", "http://ggf.org/ns/nmwg/topology/2.0/");
-		srcElement.setAttribute("type", "ipv4");
+		srcElement.setAttribute("type", ipType);
 		srcElement.setAttribute("value", srcIP);
 		
 		SOAPElement destElement = endPointElement.addChildElement("dst",
 				"nmwgt", "http://ggf.org/ns/nmwg/topology/2.0/");
-		destElement.setAttribute("type", "ipv4");
+		destElement.setAttribute("type", ipType);
 		destElement.setAttribute("value", destIP);
 		
 		return metaElement;

@@ -9,7 +9,7 @@ import javax.xml.soap.SOAPMessage;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-public class BwctlData{
+public class BwctlData {
 	
 	private List<BwctlPoint> bwctlPointList;
 	

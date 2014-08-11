@@ -99,6 +99,7 @@ public class PingerMetaManager extends XMLManager {
 				"nmwgt:dst").item(0);
 		String metaSrcIP = srcElement.getAttribute("value");
 		String metaDestIP = destElement.getAttribute("value");
-		return (metaSrcIP.equals(srcIP) && metaDestIP.equals(destIP));
+		return ((metaSrcIP.equals(srcIP) && metaDestIP.equals(destIP)) || 
+				(metaSrcIP.equals(destIP) && metaDestIP.equals(srcIP)));
 	}
 }
