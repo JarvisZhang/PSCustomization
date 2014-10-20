@@ -1,4 +1,4 @@
 PSCustomization
 ===============
 
-A customized java API for perfSONAR toolkit
+A customized data query service for perfSONAR toolkit
